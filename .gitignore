@@ -18,5 +18,5 @@ multi-tier-app-tomcat01-key
 
 *.tfstate
 *.tfstate.backup
-
+.terraform.tfstate.lock.info
 .terraform/
