@@ -18,17 +18,15 @@ variable "aws_availability_zone" {
 }
 
 variable "aws_ami_id" {
-  type        = string
-  description = "AMI ID to use for this instance"
-}
-variable "private_key_path" {
-  description = "Path to private key file"
-  type        = string
+  type = map(string)
+  default = {
+    amazon_linux = "ami-08ca1d1e465fbfe0c"   # For db01, rmq01, mc01
+    ubuntu       = "ami-05eb56e0befdb025f"   # For tomcat01
+  }
+  description = "AMI IDs by OS"
 }
 
 variable "web_user" {
   type        = string
-  default     = "ubuntu"
-  description = "The user for SSH connection to the web instance"
+  description = "The SSH user to connect as"
 }
-

@@ -1,12 +1,12 @@
 resource "aws_instance" "tomcat01" {
-  ami                    = var.aws_ami_id[var.aws_region]
+  ami                    = var.aws_ami_id
   key_name               = aws_key_pair.tomcat01-key.key_name
   vpc_security_group_ids = [aws_security_group.multi-tier-app-tomcat01-sg.id]
   availability_zone      = var.aws_availability_zone
   instance_type          = "t2.micro"
 
   tags = {
-    Name    = "multi-tier-instance-${var.instance_type}"
+    Name    = "multi-tier-instance-tomcat01"
     Project = var.aws_tag_project
   }
 
@@ -17,7 +17,7 @@ resource "aws_instance" "tomcat01" {
   connection {
     type        = "ssh"
     user        = var.web_user
-    private_key = file("multi-tier-app-tomcat01-key")
+    private_key = file(var.private_key_path)
     host        = self.public_ip
 
   }

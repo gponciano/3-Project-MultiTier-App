@@ -12,11 +12,9 @@ multi-tier-app-tomcat01-key
 
 
 
-
-.terraform.lock.hcl
-
-
+.terraform/
 *.tfstate
 *.tfstate.backup
+.terraform.lock.hcl
 .terraform.tfstate.lock.info
-.terraform/
+terraform.tfvars

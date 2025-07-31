@@ -1,12 +1,12 @@
-resource "aws_instance" "db01" {
-  ami                    = var.aws_ami_id[var.aws_region]
-  key_name               = aws_key_pair.db01-key.key_name
-  vpc_security_group_ids = [aws_security_group.multi-tier-app-allow-from-tomcat01.id]
+resource "aws_instance" "mc01" {
+  ami                    = var.aws_ami_id
+  key_name               = aws_key_pair.mc01-key.key_name
+  vpc_security_group_ids = [aws_security_group.multi-tier-app-db01-sg.id]
   availability_zone      = var.aws_availability_zone
   instance_type          = "t2.micro"
 
   tags = {
-    Name    = var.multi-tier-instance-"mc01"
+    Name    = "multi-tier-instance-mc01"
     Project = var.aws_tag_project
   }
 
@@ -17,21 +17,21 @@ resource "aws_instance" "db01" {
   connection {
     type        = "ssh"
     user        = var.web_user
-    private_key = file("multi-tier-app-mc01-key.pem")
+    private_key = file(var.private_key_path)
     host        = self.public_ip
 
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/web.sh",
-      "sudo /tmp/web.sh"
+      "chmod +x /tmp/memcache.sh",
+      "sudo /tmp/memcache.sh"
     ]
   }
 
 }
 
-resource "aws_ec2_instance_state" "web-state" {
-  instance_id = aws_instance.web.id
+resource "aws_ec2_instance_state" "mc01-state" {
+  instance_id = aws_instance.mc01.id
   state       = "running"
 }
