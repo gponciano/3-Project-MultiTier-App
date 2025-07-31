@@ -1,7 +1,7 @@
 resource "aws_instance" "tomcat01" {
   ami                    = var.aws_ami_id[var.aws_region]
   key_name               = aws_key_pair.tomcat01-key.key_name
-  vpc_security_group_ids = [aws_security_group.tomcat01-sg.id]
+  vpc_security_group_ids = [aws_security_group.multi-tier-app-tomcat01-sg.id]
   availability_zone      = var.aws_availability_zone
   instance_type          = "t2.micro"
 

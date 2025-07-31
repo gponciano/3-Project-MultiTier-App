@@ -2,12 +2,15 @@
 *.key
 *.pem
 *.crt
+*-key
 id_rsa
 id_rsa.pub
 multi-tier-app-db01-key
 multi-tier-app-mc01-key
 multi-tier-app-rmq01-key
 multi-tier-app-tomcat01-key
+
+
 
 
 .terraform.lock.hcl
