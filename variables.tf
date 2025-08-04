@@ -20,8 +20,8 @@ variable "aws_availability_zone" {
 variable "aws_ami_id" {
   type = map(string)
   default = {
-    amazon_linux = "ami-08ca1d1e465fbfe0c"   # For db01, rmq01, mc01
-    ubuntu       = "ami-05eb56e0befdb025f"   # For tomcat01
+    amazon_linux = "ami-08ca1d1e465fbfe0c" # For db01, rmq01, mc01
+    ubuntu       = "ami-05eb56e0befdb025f" # For tomcat01
   }
   description = "AMI IDs by OS"
 }
@@ -29,4 +29,10 @@ variable "aws_ami_id" {
 variable "web_user" {
   type        = string
   description = "The SSH user to connect as"
+}
+
+variable "domain_name" {
+  description = "The private domain name"
+  default     = "multi-tier-app.in"
+  type        = string
 }

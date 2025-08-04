@@ -4,7 +4,7 @@ data "aws_ami" "amiID" {
   filter {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
-    ## Amazon Linux 2023 AMI
+    # Amazon Linux 2023 AMI
   }
 
   filter {
